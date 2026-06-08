@@ -42,3 +42,26 @@ test('fewer than 4 keywords causes failure', () => {
   assert.equal(code, 1)
   assert.match(out, /at least 4 entries/)
 })
+
+test('version as string fails', () => {
+  const { code, out } = run('version-as-string')
+  assert.equal(code, 1)
+  assert.match(out, /version must be a number/)
+})
+
+test('keywords as scalar (not array) fails', () => {
+  const { code, out } = run('keywords-not-array')
+  assert.equal(code, 1)
+  assert.match(out, /keywords must be an array/)
+})
+
+test('malformed YAML frontmatter fails', () => {
+  const { code, out } = run('malformed-yaml')
+  assert.equal(code, 1)
+  assert.match(out, /frontmatter parse error/)
+})
+
+test('empty references directory passes', () => {
+  const { code } = run('empty-references')
+  assert.equal(code, 0)
+})

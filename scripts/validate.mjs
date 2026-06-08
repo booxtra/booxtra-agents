@@ -12,18 +12,18 @@ const REQUIRED_FIELDS = ['id', 'title', 'keywords', 'version', 'giltig_from']
 const MIN_KEYWORDS = 4
 
 // Matches non-printable control chars and invisible Unicode codepoints.
-// Built with new RegExp() from a string literal so the source file stays
-// safe even if editors re-encode escape sequences.
-// String contents (as Unicode ranges):
-//   U+0000-U+001F  C0 control characters
-//   U+007F-U+009F  DEL + C1 control characters
-//   U+200B-U+200F  ZWSP, ZWNJ, ZWJ, LRM, RLM
-//   U+2028-U+202E  line/paragraph separators + bidi overrides
-//   U+2060-U+206F  word joiner + invisible formatting characters
-//   U+FEFF         BOM / zero-width no-break space
-const INVISIBLE_RE = new RegExp(
-  '[\x00-\x1f\x7f-\x9f​-‏ -‮⁠-⁯﻿]'
-)
+// Uses explicit Unicode escapes so editors cannot silently corrupt the regex
+// by stripping or re-encoding invisible characters.
+// Ranges covered:
+//   \x00-\x08       C0 control chars (excluding tab \x09, LF \x0a)
+//   \x0b-\x0c       vertical tab, form feed
+//   \x0e-\x1f       remaining C0 control chars (excluding CR \x0d)
+//   \x7f-\x9f       DEL + C1 control characters
+//   \u200b-\u200f   ZWSP, ZWNJ, ZWJ, LRM, RLM
+//   \u2028-\u202e   line/paragraph separators + bidi overrides
+//   \u2060-\u206f   word joiner + invisible formatting characters
+//   \ufeff          BOM / zero-width no-break space
+const INVISIBLE_RE = /[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\u200b-\u200f\u2028-\u202e\u2060-\u206f\ufeff]/
 
 let errors = 0
 
