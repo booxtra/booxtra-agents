@@ -12,7 +12,7 @@ giltig_from: 2026-01-01
 
 ## Gränser (satskänsliga — verifiera vid nytt räkenskapsår)
 
-| Typ | Momsavdrag (exkl. moms) | Inkomstskatteav drag |
+| Typ | Momsavdrag (exkl. moms) | Inkomstskatteavdrag |
 |-----|------------------------|----------------------|
 | Intern representation (anställda, t.ex. fika vid möte) | Max 60 kr/person | Avdragsgill |
 | Extern representation (kunder/leverantörer, mat/dryck) | Max 90 kr/person | Ej avdragsgill (0 kr) |
