@@ -3,3 +3,9 @@ dist/
 *.plugin
 *.tar.gz
 GEMINI.md
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+npm-debug.log*
