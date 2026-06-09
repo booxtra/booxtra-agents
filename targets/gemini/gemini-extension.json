@@ -1,0 +1,12 @@
+{
+  "name": "booxtra",
+  "displayName": "Booxtra",
+  "description": "Swedish accounting assistant — bokföring, moms, representation",
+  "version": "0.0.0",
+  "mcpServers": {
+    "booxtra": {
+      "httpUrl": "https://booxtra.app/mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
