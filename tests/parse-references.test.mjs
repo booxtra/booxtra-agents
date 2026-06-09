@@ -46,3 +46,79 @@ test('giltig_from is an ISO date string (YYYY-MM-DD), not a Date object', () => 
     assert.match(entry.giltig_from, /^\d{4}-\d{2}-\d{2}$/, `${entry.file}: giltig_from must be YYYY-MM-DD format`)
   }
 })
+
+import { mkdirSync, writeFileSync, rmSync } from 'node:fs'
+import { mkdtempSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join as joinPath } from 'node:path'
+
+// --- Fixture-based unit tests ---
+
+test('parseReferences throws on non-existent directory', () => {
+  assert.throws(
+    () => parseReferences('/tmp/does-not-exist-booxtra-test-xyz'),
+    /references directory not found/
+  )
+})
+
+test('parseReferences handles giltig_from as a quoted YAML string', () => {
+  const dir = mkdtempSync(joinPath(tmpdir(), 'booxtra-test-'))
+  try {
+    writeFileSync(joinPath(dir, 'test.md'), [
+      '---',
+      'id: test',
+      'title: Test',
+      'keywords: [a, b, c, d]',
+      'version: 1',
+      'giltig_from: "2026-01-01"',
+      '---',
+      'Body.',
+    ].join('\n'))
+    const index = parseReferences(dir)
+    assert.equal(index.length, 1)
+    assert.equal(index[0].giltig_from, '2026-01-01')
+  } finally {
+    rmSync(dir, { recursive: true })
+  }
+})
+
+test('parseReferences throws when giltig_from is missing', () => {
+  const dir = mkdtempSync(joinPath(tmpdir(), 'booxtra-test-'))
+  try {
+    writeFileSync(joinPath(dir, 'bad.md'), [
+      '---',
+      'id: bad',
+      'title: Bad',
+      'keywords: [a, b, c, d]',
+      'version: 1',
+      '---',
+      'Body.',
+    ].join('\n'))
+    assert.throws(
+      () => parseReferences(dir),
+      /giltig_from must be a YYYY-MM-DD date/
+    )
+  } finally {
+    rmSync(dir, { recursive: true })
+  }
+})
+
+test('parseReferences returns keywords as empty array when field is a scalar', () => {
+  const dir = mkdtempSync(joinPath(tmpdir(), 'booxtra-test-'))
+  try {
+    writeFileSync(joinPath(dir, 'scalar.md'), [
+      '---',
+      'id: scalar',
+      'title: Scalar keywords',
+      'keywords: moms',
+      'version: 1',
+      'giltig_from: "2026-01-01"',
+      '---',
+      'Body.',
+    ].join('\n'))
+    const index = parseReferences(dir)
+    assert.deepEqual(index[0].keywords, [])
+  } finally {
+    rmSync(dir, { recursive: true })
+  }
+})
