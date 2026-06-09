@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
@@ -13,6 +13,7 @@ const { version } = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'))
 const refs = parseReferences(join(ROOT, 'references'))
 
 const OUT = join(ROOT, 'dist', 'booxtra.plugin')
+rmSync(OUT, { recursive: true, force: true })
 
 // Plugin manifest (with version injected)
 mkdirSync(join(OUT, '.claude-plugin'), { recursive: true })

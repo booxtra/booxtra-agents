@@ -9,6 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SCRIPT = join(ROOT, 'scripts/lib/build-claude.mjs')
 const DIST = join(ROOT, 'dist', 'booxtra.plugin')
+const ROOT_PKG = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'))
 
 before(() => {
   execSync(`node "${SCRIPT}"`, { cwd: ROOT, encoding: 'utf8' })
@@ -19,7 +20,7 @@ test('plugin.json has correct name and version', () => {
   assert.ok(existsSync(pluginPath), '.claude-plugin/plugin.json missing')
   const pkg = JSON.parse(readFileSync(pluginPath, 'utf8'))
   assert.equal(pkg.name, 'booxtra')
-  assert.ok(typeof pkg.version === 'string' && pkg.version.length > 0, 'version must be set')
+  assert.equal(pkg.version, ROOT_PKG.version, 'version must match package.json')
 })
 
 test('.mcp.json has booxtra MCP server pointing at booxtra.app', () => {
