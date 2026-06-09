@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "mcpServers": {
     "booxtra": {
-      "httpUrl": "https://booxtra.app/mcp"
+      "httpUrl": "https://booxtra.ai/mcp"
     }
   },
   "contextFileName": "GEMINI.md"

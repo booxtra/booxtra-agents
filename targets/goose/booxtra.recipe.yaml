@@ -8,6 +8,6 @@ prompt: |
 extensions:
   - type: mcp
     name: booxtra
-    uri: https://booxtra.app/mcp
+    uri: https://booxtra.ai/mcp
     timeout: 30
     bundled: false

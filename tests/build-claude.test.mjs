@@ -23,12 +23,12 @@ test('plugin.json has correct name and version', () => {
   assert.equal(pkg.version, ROOT_PKG.version, 'version must match package.json')
 })
 
-test('.mcp.json has booxtra MCP server pointing at booxtra.app', () => {
+test('.mcp.json has booxtra MCP server pointing at booxtra.ai', () => {
   const mcpPath = join(DIST, '.mcp.json')
   assert.ok(existsSync(mcpPath), '.mcp.json missing')
   const mcp = JSON.parse(readFileSync(mcpPath, 'utf8'))
   assert.ok(mcp.mcpServers && mcp.mcpServers.booxtra, 'booxtra MCP server missing')
-  assert.ok(String(mcp.mcpServers.booxtra.url).includes('booxtra.app'), 'MCP URL must reference booxtra.app')
+  assert.ok(String(mcp.mcpServers.booxtra.url).includes('booxtra.ai'), 'MCP URL must reference booxtra.ai')
 })
 
 test('all 6 skills are present in dist/booxtra.plugin/skills/', () => {
