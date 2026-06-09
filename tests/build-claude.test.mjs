@@ -49,3 +49,16 @@ test('skills/regler/references/ has 4 reference files without frontmatter', () =
     assert.ok(content.trim().length > 0, `${file} is empty`)
   }
 })
+
+test('dist/booxtra.plugin.zip is created', () => {
+  const zipPath = join(ROOT, 'dist', 'booxtra.plugin.zip')
+  assert.ok(existsSync(zipPath), 'booxtra.plugin.zip missing')
+})
+
+test('booxtra.plugin.zip contains key entry points', () => {
+  const zipPath = join(ROOT, 'dist', 'booxtra.plugin.zip')
+  const listing = execSync(`unzip -l "${zipPath}"`, { encoding: 'utf8' })
+  assert.ok(listing.includes('.claude-plugin/plugin.json'), '.claude-plugin/plugin.json missing from zip')
+  assert.ok(listing.includes('.mcp.json'), '.mcp.json missing from zip')
+  assert.ok(listing.includes('skills/regler/SKILL.md'), 'skills/regler/SKILL.md missing from zip')
+})

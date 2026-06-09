@@ -2,6 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { execSync } from 'node:child_process'
 import matter from 'gray-matter'
 import { parseReferences } from './parse-references.mjs'
 
@@ -43,3 +44,9 @@ for (const entry of refs) {
 }
 
 console.log(`Built booxtra.plugin@${version} → dist/booxtra.plugin/ (${refs.length} references)`)
+
+// Zip (contents flat — no wrapping directory)
+const ZIP = join(ROOT, 'dist', 'booxtra.plugin.zip')
+rmSync(ZIP, { force: true })
+execSync(`cd "${OUT}" && zip -r "${ZIP}" .`, { stdio: 'inherit' })
+console.log(`Zipped → dist/booxtra.plugin.zip`)
