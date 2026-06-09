@@ -29,5 +29,5 @@ npm run build       # build all target artifacts (requires Plan 2)
 ## Plans
 
 - Plan 1 (this): Foundation — references, skills, base-prompt, validate.mjs ✅
-- Plan 2: Build pipeline — scripts/lib/*.mjs, @booxtra/knowledge npm package, CI/CD
-- Plan 3: Target bundles — Claude plugin, Hermes, Gemini, Goose
+- Plan 2: Build pipeline — scripts/lib/*.mjs, @booxtra/knowledge npm package, CI/CD ✅
+- Plan 3: Target bundles — Claude plugin, Hermes (stub), Gemini, Goose recipe ✅
