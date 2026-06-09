@@ -12,17 +12,21 @@ giltig_from: 2026-01-01
 
 ## Gränser (satskänsliga — verifiera vid nytt räkenskapsår)
 
-| Typ | Momsavdrag (exkl. moms) | Inkomstskatteavdrag |
-|-----|------------------------|----------------------|
-| Intern representation (anställda, t.ex. fika vid möte) | Max 60 kr/person | Avdragsgill |
-| Extern representation (kunder/leverantörer, mat/dryck) | Max 90 kr/person | Ej avdragsgill (0 kr) |
-| Personalfest/jubileum | Max 300 kr/person | Avdragsgill (max 2 ggr/år) |
-| Gåvor till kunder | Max 300 kr inkl. moms | Avdragsgill |
-| Gåvor till anställda (julgåva etc.) | — | Skattefri upp till 1 000 kr |
+| Typ | Moms | Inkomstskatteavdrag |
+|-----|------|----------------------|
+| Måltid vid representation (intern och extern, mat/dryck) | Avdrag på underlag max **300 kr exkl. moms/person** | **Ej avdragsgill** (sedan 2017) |
+| Enklare förtäring (fika, ej måltid) | Moms avdragsgill | Avdragsgill om skäligt (riktvärde ca 60 kr/person) |
+| Personalfest | Avdrag på underlag max 300 kr exkl. moms/person | Kringkostnader avdragsgilla, max 2 ggr/år |
+| Representationsgåva till kunder | Moms avdragsgill | Avdragsgill, max ca 300 kr exkl. moms |
+| Julgåva till anställda | Moms avdragsgill | Skattefri ≤ **600 kr inkl. moms** (inkomstår 2026; 550 kr för 2025) |
 
 ## Viktigaste regeln
 
-Extern representation (middag med kund/leverantör) är **inte** avdragsgill som kostnad för inkomstskatt — kostnaden belastar resultatet men ger inget skatteavdrag. Momsen är däremot avdragsgill upp till 90 kr exkl. moms per person.
+Måltider vid representation (t.ex. middag med kund/leverantör) är sedan 2017 **inte** avdragsgilla som kostnad för inkomstskatt — kostnaden belastar resultatet men ger inget skatteavdrag. Momsen får däremot dras av på ett underlag om **högst 300 kr exkl. moms per person och tillfälle**.
+
+Schablonavdrag för moms när faktisk kostnad överstiger 300 kr exkl. moms/person:
+- **46 kr/person** om måltiden omfattar både mat och alkoholhaltig dryck
+- **36 kr/person** om kostnaden enbart avser mat och alkoholfri dryck (12 % moms × 300 kr)
 
 ## BAS-konton
 

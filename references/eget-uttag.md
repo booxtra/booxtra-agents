@@ -29,10 +29,12 @@ Inga arbetsgivaravgifter betalas på uttaget — ägaren beskattas i stället vi
 
 ## Uttag av varor eller tjänster
 
-Om ägaren tar ut varor ur lagret (t.ex. tar hem en produkt som säljs i affären) ska uttaget värderas till självkostnadspris. Utgående moms ska redovisas som om det vore en försäljning.
+Om ägaren tar ut varor ur lagret (t.ex. tar hem en produkt som säljs i affären) ska utgående moms redovisas som om det vore en försäljning (uttagsbeskattning). Observera de två olika värderingsgrunderna:
+- **Moms:** beskattningsunderlaget är varans inköps- eller självkostnadspris.
+- **Inkomstskatt:** uttaget värderas till **marknadsvärdet** (vad varan normalt skulle sålts för).
 
-- Debet 2018 Egna uttag (självkostnadspris + moms)
-- Kredit 3xxxx Försäljningskonto (netto)
+- Debet 2018 Egna uttag (marknadsvärde inkl. moms)
+- Kredit 3xxxx Försäljningskonto (netto, marknadsvärde)
 - Kredit 2611 Utgående moms 25 %
 
 ## Årsavslut

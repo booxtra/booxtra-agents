@@ -15,26 +15,28 @@ giltig_from: 2026-01-01
 | Sats | Tillämpning |
 |------|-------------|
 | 25 % | Standardsats — varor och tjänster i allmänhet |
-| 12 % | Livsmedel, restaurang/café, hotell, camping, bio, museer, konsert (viss kultur) |
-| 6 %  | Böcker, tidningar, persontransport, utövande idrott, konstnärers försäljning av egna verk |
+| 12 % | Livsmedel, restaurang/café, hotell, camping. Försäljning av konstverk — även konstnärens försäljning av egna verk (12 % sedan 2025, oavsett säljare) |
+| 6 %  | Böcker, tidningar, persontransport, utövande idrott och entré till idrottsevenemang, entré till konserter, teater, bio, museer och djurparker, upplåtelse/överlåtelse av upphovsrätt |
 | 0 %  | Export, sjukvård, tandvård, utbildning, läkemedel på recept |
 
 ## Omvänd skattskyldighet (reverse charge)
 
 Gäller **alla** utländska leverantörer av tjänster till en svensk köpare — oavsett om leverantören finns inom eller utanför EU. Det är inte begränsat till EU.
 
-Köparen (den svenska verksamheten) redovisar utgående moms och drar av samma belopp som ingående moms, netto noll i kassaflöde men måste redovisas korrekt.
+Köparen (den svenska verksamheten) redovisar utgående moms och drar av samma belopp som beräknad ingående moms, netto noll i kassaflöde men måste redovisas korrekt.
 
-Exempel: konsulttjänst från USA 10 000 kr → redovisa 2 500 kr utgående moms (konto 2611) och 2 500 kr ingående moms (konto 2640).
+Exempel: konsulttjänst från USA 10 000 kr → redovisa 2 500 kr utgående moms (konto 2614 Utgående moms omvänd skattskyldighet) och 2 500 kr beräknad ingående moms (konto 2645).
 
 ## BAS-konton
 
 | Konto | Benämning |
 |-------|-----------|
-| 2611  | Utgående moms, 25 % |
-| 2614  | Utgående moms, 12 % |
-| 2616  | Utgående moms, 6 % |
-| 2640  | Ingående moms (med underkonton per sats) |
+| 2611  | Utgående moms på försäljning inom Sverige, 25 % |
+| 2614  | Utgående moms omvänd skattskyldighet, 25 % |
+| 2621  | Utgående moms på försäljning inom Sverige, 12 % |
+| 2631  | Utgående moms på försäljning inom Sverige, 6 % |
+| 2640  | Ingående moms (inhemska inköp) |
+| 2645  | Beräknad ingående moms på förvärv från utlandet |
 
 ## Representationsmoms
 

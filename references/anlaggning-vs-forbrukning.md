@@ -13,7 +13,7 @@ giltig_from: 2026-01-01
 ## Gräns (satskänslig — verifiera vid nytt räkenskapsår)
 
 En inventarie är **förbrukningsinventarie** (direktkostnadsförs) om minst ett av följande gäller:
-1. Anskaffningsvärdet exkl. moms understiger **halvt prisbasbelopp** (ca 29 400 kr för 2025; 2026 ej fastställt — beräknas ca 30 000 kr)
+1. Anskaffningsvärdet exkl. moms understiger **halvt prisbasbelopp** (29 600 kr för 2026; 29 400 kr för 2025)
 2. Beräknad ekonomisk livslängd är **3 år eller kortare**
 
 Annars är det en **anläggningstillgång** som aktiveras och skrivs av.
@@ -23,7 +23,7 @@ Annars är det en **anläggningstillgång** som aktiveras och skrivs av.
 | År | Prisbasbelopp | Halvt prisbasbelopp |
 |----|---------------|---------------------|
 | 2025 | 58 800 kr | 29 400 kr |
-| 2026 | Ej fastställt | Verifiera hos Skatteverket |
+| 2026 | 59 200 kr | 29 600 kr |
 
 ## Avskrivning av anläggningstillgångar
 
