@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node --test tests/validate.test.mjs tests/parse-references.test.mjs tests/build-knowledge-package.test.mjs tests/build-claude.test.mjs",
+    "test": "node --test tests/validate.test.mjs tests/parse-references.test.mjs tests/build-knowledge-package.test.mjs tests/build-claude.test.mjs tests/build-gemini.test.mjs",
     "build": "bash scripts/build.sh"
   },
   "dependencies": {
