@@ -1,0 +1,8 @@
+# Tax-sensitive content: requires explicit review before merge
+references/           @booxtra/knowledge-owners
+base-prompt.md        @booxtra/knowledge-owners
+
+# Build pipeline and targets
+scripts/              @booxtra/engineering
+targets/              @booxtra/engineering
+.github/              @booxtra/engineering
