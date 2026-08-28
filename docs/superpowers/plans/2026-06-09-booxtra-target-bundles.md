@@ -71,7 +71,7 @@ Note: `version` is a placeholder — `build-claude.mjs` replaces it with the tag
 {
   "mcpServers": {
     "booxtra": {
-      "url": "https://booxtra.app/mcp"
+      "url": "https://booxtra.ai/mcp"
     }
   }
 }
@@ -87,7 +87,7 @@ Note: `version` is a placeholder — `build-claude.mjs` replaces it with the tag
   "version": "0.0.0",
   "mcpServers": {
     "booxtra": {
-      "httpUrl": "https://booxtra.app/mcp"
+      "httpUrl": "https://booxtra.ai/mcp"
     }
   },
   "contextFileName": "GEMINI.md"
@@ -109,7 +109,7 @@ prompt: |
 extensions:
   - type: mcp
     name: booxtra
-    uri: https://booxtra.app/mcp
+    uri: https://booxtra.ai/mcp
     timeout: 30
     bundled: false
 ```
@@ -176,12 +176,12 @@ test('plugin.json has correct name and version', () => {
   assert.ok(typeof pkg.version === 'string' && pkg.version.length > 0, 'version must be set')
 })
 
-test('.mcp.json has booxtra MCP server pointing at booxtra.app', () => {
+test('.mcp.json has booxtra MCP server pointing at booxtra.ai', () => {
   const mcpPath = join(DIST, '.mcp.json')
   assert.ok(existsSync(mcpPath), '.mcp.json missing')
   const mcp = JSON.parse(readFileSync(mcpPath, 'utf8'))
   assert.ok(mcp.mcpServers && mcp.mcpServers.booxtra, 'booxtra MCP server missing')
-  assert.ok(String(mcp.mcpServers.booxtra.url).includes('booxtra.app'), 'MCP URL must reference booxtra.app')
+  assert.ok(String(mcp.mcpServers.booxtra.url).includes('booxtra.ai'), 'MCP URL must reference booxtra.ai')
 })
 
 test('all 6 skills are present in dist/booxtra.plugin/skills/', () => {
@@ -525,7 +525,7 @@ git commit -m "docs: update README to mark Plan 3 complete"
 |-----------------|------|
 | `dist/booxtra.plugin/` — skills + references | Task 2 |
 | `.claude-plugin/plugin.json` with name + version | Task 2 |
-| `.mcp.json` pointing at `https://booxtra.app/mcp` | Task 2 |
+| `.mcp.json` pointing at `https://booxtra.ai/mcp` | Task 2 |
 | References in `skills/regler/references/` (frontmatter stripped) | Task 2 |
 | `dist/gemini-extension/gemini-extension.json` with `contextFileName: GEMINI.md` | Task 3 |
 | `GEMINI.md` = routing skill + all references concatenated | Task 3 |

@@ -155,7 +155,7 @@ def pre_llm_call(message='', **kwargs):
 # Lägg till detta i din ~/.hermes/config.yaml för att ansluta Booxtra-servern
 mcp_servers:
   booxtra:
-    url: https://booxtra.app/mcp
+    url: https://booxtra.ai/mcp
 ```
 
 - [ ] **Step 5: Commit**
