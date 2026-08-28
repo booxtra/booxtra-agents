@@ -31,8 +31,8 @@ test('.mcp.json has booxtra MCP server pointing at booxtra.ai', () => {
   assert.ok(String(mcp.mcpServers.booxtra.url).includes('booxtra.ai'), 'MCP URL must reference booxtra.ai')
 })
 
-test('all 6 skills are present in dist/booxtra.plugin/skills/', () => {
-  const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export']
+test('all 7 skills are present in dist/booxtra.plugin/skills/', () => {
+  const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export', 'fakturering']
   for (const skill of SKILLS) {
     assert.ok(existsSync(join(DIST, 'skills', skill, 'SKILL.md')), `skills/${skill}/SKILL.md missing`)
   }

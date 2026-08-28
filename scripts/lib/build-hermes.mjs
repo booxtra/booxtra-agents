@@ -28,7 +28,7 @@ for (const f of ['__init__.py', 'hooks.py', 'config.example.yaml']) {
 }
 
 // Skills
-const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export']
+const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export', 'fakturering']
 for (const skill of SKILLS) {
   mkdirSync(join(OUT, 'skills', skill), { recursive: true })
   copyFileSync(join(ROOT, 'skills', skill, 'SKILL.md'), join(OUT, 'skills', skill, 'SKILL.md'))

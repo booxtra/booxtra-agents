@@ -26,7 +26,7 @@ writeFileSync(join(OUT, '.claude-plugin', 'plugin.json'), JSON.stringify(pluginJ
 writeFileSync(join(OUT, '.mcp.json'), readFileSync(join(ROOT, 'targets/claude/mcp.json'), 'utf8'))
 
 // Skills
-const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export']
+const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export', 'fakturering']
 for (const skill of SKILLS) {
   mkdirSync(join(OUT, 'skills', skill), { recursive: true })
   writeFileSync(
