@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Bygg och verifiera utan att skapa en release'
+        type: boolean
+        default: true
 
 jobs:
   release:
@@ -11,35 +17,60 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '20'
           cache: npm
-          registry-url: https://registry.npmjs.org
 
       - run: npm ci
 
-      - name: Update package version to match tag
+      # Taggen är inte sanning — package.json är. Failar hellre tidigt än
+      # skriver över versionen och låter filen drifta från historiken.
+      - name: Verify tag matches package.json
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
-          TAG="${GITHUB_REF_NAME}"          # e.g. v0.3.0
-          VERSION="${TAG#v}"                # strip leading v → 0.3.0
-          npm version "$VERSION" --no-git-tag-version
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "::error::Taggen ${GITHUB_REF_NAME} ger $TAG_VERSION men package.json säger $PKG_VERSION. Kör 'npm version' i stället för att tagga för hand."
+            exit 1
+          fi
+          echo "Version $PKG_VERSION bekräftad."
+
+      - run: npm run validate
+
+      - run: npm test
 
       - name: Build
         run: bash scripts/build.sh
 
+      - name: Pack knowledge tarball
+        working-directory: dist/knowledge
+        run: |
+          npm pack --pack-destination "$GITHUB_WORKSPACE/dist"
+          mv "$GITHUB_WORKSPACE"/dist/booxtra-knowledge-*.tgz \
+             "$GITHUB_WORKSPACE/dist/booxtra-knowledge.tgz"
+
+      - name: Summarize artifacts
+        run: |
+          {
+            echo '### Artefakter'
+            echo
+            echo '| Fil | Storlek |'
+            echo '|-----|---------|'
+            for f in dist/booxtra.plugin.zip dist/booxtra-hermes.tar.gz dist/booxtra-knowledge.tgz; do
+              echo "| \`$(basename "$f")\` | $(du -h "$f" | cut -f1) |"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/') && inputs.dry_run != true
+        uses: softprops/action-gh-release@v3
         with:
           generate_release_notes: true
           files: |
             dist/booxtra.plugin.zip
             dist/booxtra-hermes.tar.gz
-
-      - name: Publish @booxtra/knowledge to npm
-        run: npm publish --access public
-        working-directory: dist/knowledge
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            dist/booxtra-knowledge.tgz
