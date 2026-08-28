@@ -32,9 +32,9 @@ test('archive contains __init__.py, hooks.py, config.example.yaml', () => {
   assert.ok(listing.includes('booxtra-hermes/config.example.yaml'), 'config.example.yaml missing')
 })
 
-test('archive contains all 6 skills', () => {
+test('archive contains all 7 skills', () => {
   const listing = execSync(`tar -tzf "${TAR}"`, { encoding: 'utf8' })
-  const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export']
+  const SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export', 'fakturering']
   for (const skill of SKILLS) {
     assert.ok(listing.includes(`booxtra-hermes/skills/${skill}/SKILL.md`), `skills/${skill}/SKILL.md missing from archive`)
   }

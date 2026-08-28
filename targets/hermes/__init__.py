@@ -5,7 +5,7 @@ PLUGIN_DIR = pathlib.Path(__file__).parent
 sys.path.insert(0, str(PLUGIN_DIR))
 from hooks import pre_llm_call as _pre_llm_call  # noqa: E402
 
-SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export']
+SKILLS = ['routing', 'onboarding', 'bokforing', 'regler', 'rapporter', 'avslut-och-export', 'fakturering']
 
 def register(ctx):
     for skill in SKILLS:

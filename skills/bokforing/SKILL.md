@@ -11,7 +11,7 @@ Skapa och validera verifikat.
 
 1. **Identifiera verifikatstyp**: leverantörsfaktura, kundbetalning, banktransaktion, lönepost, eget uttag, övrigt.
 
-2. **Satskänsliga belopp**: om verifikatet innehåller moms, representation eller anläggningstillgång — anropa `get_knowledge` för rätt regler *innan* du föreslår konton. Aldrig ur minnet.
+2. **Satskänsliga belopp**: om verifikatet innehåller moms, representation eller anläggningstillgång — anropa `search_knowledge` med en fritextfråga (t.ex. `"representation middag kund"`) *innan* du föreslår konton. Aldrig ur minnet. Verktyget returnerar rå text utan slutsatser; läs den och dra slutsatsen själv. Tomt svar är inte ett fel — fortsätt, men säg att satsen inte kunde verifieras.
 
 3. **Identifiera motpart (obligatoriskt före bokföring)**: ta reda på kund/leverantör. Slå upp med `get_party(orgNumber)` (namnsökning endast som reserv). Saknas parten — `create_party` och använd det returnerade id:t. Skicka alltid `partyId` till `post_journal_entry`. Utelämna `partyId` endast när det saknas identifierbar motpart (t.ex. rena bankavgifter).
 
@@ -26,4 +26,4 @@ Skapa och validera verifikat.
 - Leverantörsfaktura: Debet kostnadskonto + Debet 2640 Ingående moms / Kredit 2440 Leverantörsskulder
 - Betalning av leverantörsfaktura: Debet 2440 / Kredit 1930
 - Kundbetalning: Debet 1930 / Kredit 1510 Kundfordringar
-- Eget uttag (enskild firma): se `get_knowledge("eget-uttag")`
+- Eget uttag (enskild firma): se `search_knowledge("eget uttag enskild firma")`

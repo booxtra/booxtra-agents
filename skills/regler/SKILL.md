@@ -1,6 +1,6 @@
 ---
 name: regler
-description: Besvarar frågor om bokförings- och skatteregler via get_knowledge. Använd vid frågor om moms, representation, eget uttag eller anläggningstillgång kontra förbrukningsinventarie.
+description: Besvarar frågor om bokförings- och skatteregler ur kunskapsbasen. Använd vid frågor om moms, representation, eget uttag eller anläggningstillgång kontra förbrukningsinventarie.
 ---
 
 # Regler
@@ -9,18 +9,22 @@ Besvara frågor om bokförings- och skatteregler.
 
 ## Kritisk regel
 
-**Satskänsliga belopp verifieras alltid via `get_knowledge` — aldrig ur minnet, och aldrig ur en bundlad kopia som kan vara inaktuell.**
+**Satskänsliga belopp verifieras alltid mot en källa — aldrig ur minnet.** `search_knowledge` returnerar rå text ur kunskapsbasen: inga kontoförslag, inga momsslutsatser, inga regeltolkningar. Du läser texten och drar slutsatsen själv.
 
 ## Flöde
 
-1. Identifiera ämnet:
-   - Moms / omvänd skattskyldighet → `get_knowledge("moms")`
-   - Representation, gåvor → `get_knowledge("representation")`
-   - Eget uttag, enskild firma → `get_knowledge("eget-uttag")`
-   - Anläggningstillgång vs förbrukningsinventarie → `get_knowledge("anlaggning-vs-forbrukning")`
+1. Sök med fritext som beskriver situationen, inte ett ämnesnamn:
+   - Moms, omvänd skattskyldighet → `search_knowledge("omvänd skattskyldighet bygg moms")`
+   - Representation, gåvor → `search_knowledge("representation middag kund avdragsgill")`
+   - Eget uttag, enskild firma → `search_knowledge("eget uttag enskild firma")`
+   - Anläggningstillgång vs förbrukningsinventarie → `search_knowledge("anläggningstillgång förbrukningsinventarie beloppsgräns")`
 
-2. Om sökningen inte ger tydlig träff: anropa `get_knowledge` igen med ett av de returnerade ämnes-ID:na från index.
+   Gäller frågan ett specifikt konto, sök på kontonumret tillsammans med sammanhang: `search_knowledge("6072 representation avdragsgill")`.
 
-3. Presentera svaret för användaren och hänvisa till versionsstämpeln i referensen (t.ex. "moms v1 per 2026-01-01") — påminn om att satser kan ändras och att referensen verifieras årligen.
+2. Ger sökningen inget tydligt svar: sök om med andra ord. `score` ordnar bara träffar inom samma sökning — jämför den aldrig mellan sökningar och sätt inga trösklar på den.
 
-4. Applicera regeln i ett konkret exempel om användaren bokför — gå över till bokforing-skill för själva verifikatet.
+3. **Tomt eller otillgängligt svar är inte ett fel.** Kunskapsbasen är under omarbetning. Fall då tillbaka på referensfilerna som följer med paketet och säg vilken du använt och vad den är stämplad till. Finns inget där heller: säg att satsen inte kunde verifieras och be användaren bekräfta den mot Skatteverket. Gissa aldrig ur minnet.
+
+4. Presentera svaret med versionsstämpeln (t.ex. "moms v1 per 2026-01-01") — påminn om att satser kan ändras och att referensen verifieras årligen.
+
+5. Applicera regeln i ett konkret exempel om användaren bokför — gå över till bokforing-skill för själva verifikatet.

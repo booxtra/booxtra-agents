@@ -33,11 +33,11 @@ test('each reference exists in dist/knowledge/ with frontmatter stripped', () =>
   }
 })
 
-test('dist/knowledge/base-prompt.md exists and contains get_knowledge', () => {
+test('dist/knowledge/base-prompt.md exists and contains search_knowledge', () => {
   const filePath = join(DIST, 'base-prompt.md')
   assert.ok(existsSync(filePath), 'base-prompt.md missing from dist/knowledge/')
   const content = readFileSync(filePath, 'utf8')
-  assert.ok(content.includes('get_knowledge'), 'base-prompt must mention get_knowledge')
+  assert.ok(content.includes('search_knowledge'), 'base-prompt must mention search_knowledge')
 })
 
 test('dist/knowledge/package.json has correct name, version, and is public', () => {
