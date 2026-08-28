@@ -1,3 +1,8 @@
+---
+name: routing
+description: Identifierar användarens intent och delegerar till rätt Booxtra-skill. Använd när det är oklart vilket bokföringsområde en fråga gäller.
+---
+
 # Routing
 
 Identifiera användarens intent och delegera till rätt skill.

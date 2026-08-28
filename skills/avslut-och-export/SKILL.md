@@ -1,3 +1,8 @@
+---
+name: avslut-och-export
+description: Bokför avskrivningar, stänger perioder och exporterar SIE4-filer. Använd vid bokslut, periodstängning eller när revisorn behöver en SIE-fil.
+---
+
 # Avslut och export
 
 Stäng perioder, bokför avskrivningar och exportera SIE-filer.

@@ -1,3 +1,8 @@
+---
+name: bokforing
+description: Skapar och validerar verifikat. Använd när användaren vill bokföra en leverantörsfaktura, kundbetalning, banktransaktion, lönepost eller eget uttag.
+---
+
 # Bokföring
 
 Skapa och validera verifikat.

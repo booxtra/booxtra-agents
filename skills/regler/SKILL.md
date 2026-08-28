@@ -1,3 +1,8 @@
+---
+name: regler
+description: Besvarar frågor om bokförings- och skatteregler via get_knowledge. Använd vid frågor om moms, representation, eget uttag eller anläggningstillgång kontra förbrukningsinventarie.
+---
+
 # Regler
 
 Besvara frågor om bokförings- och skatteregler.

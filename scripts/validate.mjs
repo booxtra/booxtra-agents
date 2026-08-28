@@ -10,6 +10,7 @@ const ROOT = process.env.BOOXTRA_ROOT
 
 const REQUIRED_FIELDS = ['id', 'title', 'keywords', 'version', 'giltig_from']
 const MIN_KEYWORDS = 4
+const MAX_DESCRIPTION = 1024
 
 // Matches non-printable control chars and invisible Unicode codepoints.
 // Uses explicit Unicode escapes so editors cannot silently corrupt the regex
@@ -83,11 +84,49 @@ for (const file of walkMd(join(ROOT, 'references'))) {
   }
 }
 
-// 2. base-prompt.md + skills/ + goose/ -- invisible Unicode only
+// 2. skills/*/SKILL.md -- frontmatter required by Claude Desktop's plugin loader
+let skillDirs = []
+try {
+  skillDirs = readdirSync(join(ROOT, 'skills')).filter((e) =>
+    statSync(join(ROOT, 'skills', e)).isDirectory()
+  )
+} catch { /* no skills/ directory */ }
+
+for (const skill of skillDirs) {
+  const file = join(ROOT, 'skills', skill, 'SKILL.md')
+
+  let raw
+  try { raw = readFileSync(file, 'utf8') } catch {
+    fail(file, `skills/${skill}/ has no SKILL.md`)
+    continue
+  }
+
+  // Claude Desktop rejects the whole plugin if any SKILL.md lacks frontmatter.
+  if (!raw.startsWith('---')) {
+    fail(file, 'must start with YAML frontmatter (---)')
+    continue
+  }
+
+  let parsed
+  try { parsed = matter(raw) } catch (e) {
+    fail(file, `frontmatter parse error: ${e.message}`)
+    continue
+  }
+
+  const { name, description } = parsed.data
+  if (!name) fail(file, 'missing required frontmatter field: name')
+  else if (name !== skill) fail(file, `frontmatter name '${name}' must match directory name '${skill}'`)
+
+  if (!description) fail(file, 'missing required frontmatter field: description')
+  else if (description.length > MAX_DESCRIPTION) {
+    fail(file, `description must be at most ${MAX_DESCRIPTION} characters; found ${description.length}`)
+  }
+}
+
+// 3. base-prompt.md + skills/ -- invisible Unicode only
 const unicodePaths = [
   join(ROOT, 'base-prompt.md'),
   ...walkMd(join(ROOT, 'skills')),
-  ...walkMd(join(ROOT, 'goose')),
 ]
 
 for (const file of unicodePaths) {

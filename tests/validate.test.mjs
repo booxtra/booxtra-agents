@@ -65,3 +65,26 @@ test('empty references directory passes', () => {
   const { code } = run('empty-references')
   assert.equal(code, 0)
 })
+
+test('valid SKILL.md frontmatter passes', () => {
+  const { code } = run('skills-valid')
+  assert.equal(code, 0)
+})
+
+test('SKILL.md without frontmatter fails', () => {
+  const { code, out } = run('skill-no-frontmatter')
+  assert.equal(code, 1)
+  assert.match(out, /must start with YAML frontmatter/)
+})
+
+test('SKILL.md frontmatter name not matching directory fails', () => {
+  const { code, out } = run('skill-name-mismatch')
+  assert.equal(code, 1)
+  assert.match(out, /must match directory name 'bokforing'/)
+})
+
+test('SKILL.md without description fails', () => {
+  const { code, out } = run('skill-missing-description')
+  assert.equal(code, 1)
+  assert.match(out, /missing required frontmatter field: description/)
+})

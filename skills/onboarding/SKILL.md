@@ -1,3 +1,8 @@
+---
+name: onboarding
+description: Guidar en ny användare genom räkenskapsår, tenant-inställningar och kontoplan. Använd första gången någon kopplar upp sig mot Booxtra eller när grundinställningar saknas.
+---
+
 # Onboarding
 
 Hjälp en ny användare att komma igång med Booxtra.

@@ -1,3 +1,8 @@
+---
+name: rapporter
+description: Hämtar och presenterar balansräkning, resultaträkning, huvudbok och momsrapport. Använd när användaren efterfrågar siffror eller rapporter för en period.
+---
+
 # Rapporter
 
 Hämta och presentera boksluts- och löpande rapporter.
